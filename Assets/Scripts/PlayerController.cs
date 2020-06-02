@@ -37,17 +37,8 @@ public class PlayerController : MonoBehaviour
 
     private void RotateToMouse()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition = _mainCamera.ScreenToWorldPoint(mousePosition);
-
-        var playerTransform = transform;
-        var position = playerTransform.position;
-
-        var direction = new Vector2(
-            mousePosition.x - position.x,
-            mousePosition.y - position.y
-            );
-
-        playerTransform.up = direction;
+        var dir = Input.mousePosition - _mainCamera.WorldToScreenPoint(transform.position);
+        var angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 90;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }
