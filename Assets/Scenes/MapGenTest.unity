@@ -2164,6 +2164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0091ba6b0873fd40b1b792193d688ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cannonBall: {fileID: 2845383415205128841, guid: dc81b53cd74479c4983e220b871e6ff8,
+    type: 3}
+  cooldown: 0
 --- !u!58 &3109868617268300764
 CircleCollider2D:
   m_ObjectHideFlags: 0

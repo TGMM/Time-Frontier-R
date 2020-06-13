@@ -49,7 +49,6 @@ namespace Enemy
                 yield return null;
             }
 
-            //yield return new WaitForSeconds(1);
             StartCoroutine(nameof(GoToNextTile));
         }
 
