@@ -42,7 +42,7 @@ namespace Tower
             }
         }
 
-        void Cannon()
+        private void Cannon()
         {
             const int layerMaskZero = 1;
 
@@ -77,27 +77,6 @@ namespace Tower
                     }
                     case TurretMode.First:
                     {
-                        foreach (Collider2D enemy in detectedEnemies)
-                        {
-                            if (enemy.GetComponent<EnemyMovement>().waypointIndex > farthestWaypoint)
-                            {
-                                tMin = enemy.transform;
-                                farthestWaypoint = enemy.GetComponent<EnemyMovement>().waypointIndex;
-                                minDist = Vector2.Distance(enemy.transform.position, enemy.GetComponent<EnemyMovement>().target.position);
-                            }
-                            else if (enemy.GetComponent<EnemyMovement>().waypointIndex == farthestWaypoint)
-                            {
-                                float dist = Vector2.Distance(enemy.transform.position, enemy.GetComponent<EnemyMovement>().target.position);
-                                if (dist < minDist)
-                                {
-                                    tMin = enemy.transform;
-                                    minDist = dist;
-                                }
-                            }                    
-                        }
-                        var dir = tMin.position - _cannon.transform.position;
-                        var angle = Mathf.Atan2(-dir.x, dir.y) * Mathf.Rad2Deg;
-                        _cannon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                         break;
                     }
                 }

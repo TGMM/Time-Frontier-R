@@ -2,9 +2,12 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[Serializable]
-public class TileTypesManager : MonoBehaviour
+namespace Map
 {
-    public Tile basicRoad;
-    public Tile basicCurve;
+    [Serializable]
+    public class TileTypesManager : MonoBehaviour
+    {
+        public TileBase basicRoad;
+        public TileBase grass;
+    }
 }

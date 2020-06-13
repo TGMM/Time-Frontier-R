@@ -1,49 +1,90 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Map;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
-public class EnemyMovement : MonoBehaviour {
-
-    //Speed at which the enemy moves, set to public so it can be edited in inspector.
-    public float speed = 1f;
-    //Target is the current waypoint at which is headed, changes after it arrives there. Ex. Waypoint 1 is target
-    //enemy reaches waypoint 1, now waypoint 2 is target
-    public Transform target;
-    //Same as above but this is just the index, not the actual transform position (x, y coordinates)
-    public int waypointIndex = 1;
-
-    void Start ()
+namespace Enemy
+{
+    public class EnemyMovement : MonoBehaviour
     {
-        //Set target to the first waypoint
-        target = Waypoints.waypoints[1];
-	}
-	
-	void Update ()
-    {
-        //Set direction
-        Vector2 dir = target.position - transform.position;
-        //Move to target using direction above
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
-        //Rotate
-        var dirRot = target.position - transform.position;
-        var angle = Mathf.Atan2(-dir.x, dir.y) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        private Tilemap _map;
+        private TileTypesManager _tileTypes;
+        private string _prohibitedTileName;
 
-        if (Vector2.Distance(transform.position,target.position) <= 0.02f)
+        private List<Vector3Int> _visitedTiles;
+
+        public Vector3 offset = Vector3.zero;
+        public float speed = 1f;
+
+        private void Start()
         {
-            GetNextWaypoint();
-        }
-    }
+            _tileTypes = FindObjectOfType<TileTypesManager>();
+            _prohibitedTileName = _tileTypes.grass.name;
+            _map = FindObjectOfType<Grid>().transform.GetChild(0).GetComponent<Tilemap>();
+            _visitedTiles = new List<Vector3Int>();
 
-    void GetNextWaypoint()
-    {
-        if ( waypointIndex >= Waypoints.waypoints.Length - 1)
-        {
-            Destroy(gameObject);
-            return;
+            StartCoroutine(nameof(GoToNextTile));
         }
 
-        waypointIndex++;
-        target = Waypoints.waypoints[waypointIndex];
+        private IEnumerator GoToNextTile()
+        {
+            var next = FindNextTile();
+            if (next == Vector3Int.one)
+            {
+                Destroy(gameObject);
+                yield break;
+            }
+
+            var time = 1 / speed;
+            var elapsedTime = 0f;
+            
+            var startingPos = transform.position;
+            var newPosition = _map.CellToWorld(next) + offset;
+
+            while (elapsedTime < time)
+            {
+                transform.position = Vector3.Lerp(startingPos, newPosition, (elapsedTime / time));
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            //yield return new WaitForSeconds(1);
+            StartCoroutine(nameof(GoToNextTile));
+        }
+
+        private Vector3Int FindNextTile()
+        {
+            var currentCell = _map.WorldToCell(transform.position);
+
+            var cellUp = currentCell + Vector3Int.up;
+            var tileUp = _map.GetTile(cellUp);
+            if (tileUp != null && !_visitedTiles.Contains(cellUp) && tileUp.name != _prohibitedTileName)
+            {
+                _visitedTiles.Add(cellUp);
+                transform.rotation = Quaternion.Euler(Vector3.zero);
+                return cellUp;
+            }
+
+            var cellRight = currentCell + Vector3Int.right;
+            var tileRight = _map.GetTile(cellRight);
+            if (tileRight != null && !_visitedTiles.Contains(cellRight) && tileRight.name != _prohibitedTileName)
+            {
+                _visitedTiles.Add(cellRight);
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
+                return cellRight;
+            }
+
+            var cellDown = currentCell + Vector3Int.down;
+            var tileDown = _map.GetTile(cellDown);
+            if (tileDown != null && !_visitedTiles.Contains(cellDown) && tileDown.name != _prohibitedTileName)
+            {
+                _visitedTiles.Add(cellDown);
+                transform.rotation = Quaternion.Euler(new Vector3(0, 0, -180));
+                return cellDown;
+            }
+
+            return Vector3Int.one;
+        }
     }
 }
