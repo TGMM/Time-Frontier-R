@@ -13,9 +13,8 @@ namespace Tower
         {
             if (other.CompareTag("Enemy"))
             {
-
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
         }
     }
 }

@@ -11,8 +11,8 @@ namespace Player
         public int Hp { get; set; }
         public int Coins { get; set; }
 
-        private const int StartingCoins = 250;
-        private const int StartingHp = 500;
+        private const int StartingCoins = 0;
+        private const int StartingHp = 300;
 
         private TextMeshProUGUI _hpText;
         private TextMeshProUGUI _coinsText;

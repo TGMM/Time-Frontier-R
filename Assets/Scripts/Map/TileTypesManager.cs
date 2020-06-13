@@ -11,5 +11,6 @@ namespace Map
         public TileBase grass;
         public TileBase brick;
         public TileBase endStone;
+        public TileBase preview;
     }
 }

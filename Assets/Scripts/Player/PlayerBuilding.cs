@@ -10,15 +10,25 @@ namespace Player
         private Tilemap _buildingPreviewMap;
         private Tilemap _buildingMap;
 
+        [SerializeField] private GameObject cannon;
+
         private Camera _mainCamera;
 
         private TileTypesManager _tileTypes;
+        private PlayerValues _playerValues;
 
         private bool _building;
 
+        private Color _previewGreen = Color.green;
+        private Color _previewRed = Color.red;
+
         private void Start()
         {
-            _tileTypes = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<TileTypesManager>();
+            _previewGreen.a = 0.5f;
+            _previewRed.a = 0.5f;
+
+            _tileTypes = FindObjectOfType<TileTypesManager>();
+            _playerValues = FindObjectOfType<PlayerValues>();
 
             var grid = GameObject.Find("Grid");
             _baseMap = grid.transform.GetChild(0).GetComponent<Tilemap>();
@@ -49,18 +59,39 @@ namespace Player
 
         private void PreviewTileToPlace(Vector3Int position)
         {
-            _buildingPreviewMap.SetTile(position, _tileTypes.grass);
+            if (_playerValues.Coins >= 50 && CanPlace(position))
+            {
+                _buildingPreviewMap.color = _previewGreen;
+            }
+            else
+            {
+                _buildingPreviewMap.color = _previewRed;
+            }
+            _buildingPreviewMap.SetTile(position, _tileTypes.preview);
+        }
+
+        private bool CanPlace(Vector3Int position)
+        {
+            var worldPos = _baseMap.CellToWorld(position);
+            var entities = Physics2D.OverlapBoxAll(worldPos + new Vector3(0.5f, 0.5f), 
+                new Vector2(0.5f,0.5f), 0f);
+
+            return _baseMap.GetTile(position).name == _tileTypes.grass.name && !(entities.Length >= 1);
         }
 
         private void CheckForPlaceTile(Vector3Int position)
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0) && CanPlace(position))
             {
-                _buildingMap.SetTile(position, _tileTypes.basicRoad);
+                if (_playerValues.Coins >= 50)
+                {
+                    Instantiate(cannon, position + new Vector3(0.5f, 0.5f), Quaternion.identity);
+                    _playerValues.ChangeCoins(-50);
+                }
             }
-            else if (Input.GetMouseButton(1))
+            else if (Input.GetMouseButtonDown(1))
             {
-                _buildingMap.SetTile(position, ScriptableObject.CreateInstance<Tile>());
+                _buildingMap.SetTile(position, null);
             }
         }
     }

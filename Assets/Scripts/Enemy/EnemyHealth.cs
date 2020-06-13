@@ -20,7 +20,7 @@ namespace Enemy
         {
             if (col.gameObject.CompareTag("Projectile"))
             {
-                _health.TakeDamage(10);
+                _health.TakeDamage(5);
             }
         }
 
@@ -59,7 +59,7 @@ namespace Enemy
             if (!_destinedToDie)
             {
                 _destinedToDie = true;
-                FindObjectOfType<PlayerValues>().ChangeCoins(Random.Range(2,10));
+                FindObjectOfType<PlayerValues>().ChangeCoins(Random.Range(1,4));
             }
             Destroy(gameObject, 1.2f);
         }

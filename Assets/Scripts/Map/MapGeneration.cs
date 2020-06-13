@@ -23,12 +23,6 @@ namespace Map
             GenerateMap();
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-                GenerateMap();
-        }
-
         private void ClearMap()
         {
             _map.ClearAllTiles();
