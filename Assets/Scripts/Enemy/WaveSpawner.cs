@@ -22,6 +22,11 @@ namespace Enemy
             _waveCounter = textObject.GetComponent<TextMeshProUGUI>();
         }
 
+        public void StopSpawns()
+        {
+            StopAllCoroutines();
+        }
+
         public void SpawnNextWave()
         {
             currentWave++;

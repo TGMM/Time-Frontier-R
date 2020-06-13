@@ -1,5 +1,9 @@
-﻿using TMPro;
+﻿using Enemy;
+using Map;
+using Menu;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Player
 {
@@ -17,6 +21,8 @@ namespace Player
         private TextMeshProUGUI _hpText;
         private TextMeshProUGUI _coinsText;
 
+        private GameObject _gameMaster;
+
         private void Awake()
         {
             Coins = StartingCoins;
@@ -27,12 +33,28 @@ namespace Player
         {
             _hpText = GameObject.Find("HealthPoints").GetComponent<TextMeshProUGUI>();
             _coinsText = GameObject.Find("Money").GetComponent<TextMeshProUGUI>();
+            _gameMaster = GameObject.FindGameObjectWithTag("GameMaster");
         }
 
         private void Update()
         {
             _hpText.text = Hp.ToString();
             _coinsText.text = Coins.ToString();
+
+            if (Hp <= 0 && SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(3))
+            {
+                LoseGame();
+            }
+        }
+
+        private void LoseGame()
+        {
+            DontDestroyOnLoad(_gameMaster);
+            Destroy(_gameMaster.GetComponent<EnemyTypesManager>());
+            Destroy(_gameMaster.GetComponent<TileTypesManager>());
+            _gameMaster.GetComponent<WaveSpawner>().StopSpawns();
+            _gameMaster.GetComponent<ButtonDelay>().StopAllCoroutines();
+            SceneManager.LoadScene(3);
         }
 
         public int GetCoins()

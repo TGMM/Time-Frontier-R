@@ -345,6 +345,75 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &400125945
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6624635627564366900, guid: d4da09138ac4b7a4c966f1c43621c889,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624635627564366902, guid: d4da09138ac4b7a4c966f1c43621c889,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.1031022
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624635627564366902, guid: d4da09138ac4b7a4c966f1c43621c889,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.6982067
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624635627564366902, guid: d4da09138ac4b7a4c966f1c43621c889,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.514795
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624635627564366902, guid: d4da09138ac4b7a4c966f1c43621c889,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624635627564366902, guid: d4da09138ac4b7a4c966f1c43621c889,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624635627564366902, guid: d4da09138ac4b7a4c966f1c43621c889,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624635627564366902, guid: d4da09138ac4b7a4c966f1c43621c889,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624635627564366902, guid: d4da09138ac4b7a4c966f1c43621c889,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624635627564366902, guid: d4da09138ac4b7a4c966f1c43621c889,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624635627564366902, guid: d4da09138ac4b7a4c966f1c43621c889,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624635627564366902, guid: d4da09138ac4b7a4c966f1c43621c889,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d4da09138ac4b7a4c966f1c43621c889, type: 3}
 --- !u!1 &460975129
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,6 +811,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1652650112}
+        m_MethodName: DelayButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &975325148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -909,7 +989,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 184}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1063220254
 MonoBehaviour:
@@ -965,7 +1045,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 514
+  m_textAlignment: 8194
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -1485,7 +1565,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -1627,6 +1707,8 @@ GameObject:
   - component: {fileID: 1652650110}
   - component: {fileID: 1652650109}
   - component: {fileID: 1652650111}
+  - component: {fileID: 1652650112}
+  - component: {fileID: 1652650113}
   m_Layer: 0
   m_Name: _gameMaster
   m_TagString: GameMaster
@@ -1707,6 +1789,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 500
   maxCoins: 250
+--- !u!114 &1652650112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652650106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd3e2c8f64cde04b94a82b08480027f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 975325147}
+--- !u!114 &1652650113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652650106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8082e5c44961ca94c943ed325f347e72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1849963735
 GameObject:
   m_ObjectHideFlags: 0

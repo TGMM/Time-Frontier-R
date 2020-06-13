@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 37935985}
   - component: {fileID: 37935986}
   - component: {fileID: 37935987}
+  - component: {fileID: 37935988}
   m_Layer: 0
   m_Name: chems
   m_TagString: Player
@@ -265,6 +266,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.8, y: 8.16}
   m_EdgeRadius: 0
+--- !u!114 &37935988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37935982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7f18c381add8e428b9c6c8308caf76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &136932692
 GameObject:
   m_ObjectHideFlags: 0

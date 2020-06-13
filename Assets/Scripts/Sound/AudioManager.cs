@@ -1,6 +1,6 @@
-﻿using UnityEngine.Audio;
-using System;
+﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class AudioManager : MonoBehaviour
@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
-    void Awake()
+    private void Awake()
     {
         if (instance == null)
             instance = this;
@@ -19,6 +19,8 @@ public class AudioManager : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
+
+        SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
 
         foreach (Sound s in sounds)
         {
@@ -30,9 +32,32 @@ public class AudioManager : MonoBehaviour
             s.source.outputAudioMixerGroup = s.output;
         }
     }
-    void Start()
+
+    private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)
     {
-        Play("menu");
+        PlaySceneSong();
+    }
+
+    private void Start()
+    {
+        PlaySceneSong();
+    }
+
+    private void PlaySceneSong()
+    {
+        StopAll();
+        switch (SceneManager.GetActiveScene().buildIndex)
+        {
+            case 0:
+                Play("menu");
+                break;
+            case 1:
+                Play("easter");
+                break;
+            case 2:
+                Play("Theme");
+                break;
+        }
     }
 
     public void Play(string name)
@@ -56,6 +81,13 @@ public class AudioManager : MonoBehaviour
             return;
         }
         s.source.Stop();
+    }
+
+    public void StopAll()
+    {
+        Stop("menu");
+        Stop("easter");
+        Stop("Theme");
     }
 
 
