@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 1157073969}
   - component: {fileID: 4872744788505563263}
   - component: {fileID: 3179950657769763738}
-  - component: {fileID: 5220438696032376345}
   - component: {fileID: 3659612176954492069}
   m_Layer: 8
   m_Name: Enemy_Orc
@@ -4929,18 +4928,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &5220438696032376345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4784645631715037705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18dd6a311662ef44585ac49214b641a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3659612176954492069
 MonoBehaviour:
   m_ObjectHideFlags: 0

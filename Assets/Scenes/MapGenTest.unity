@@ -516,6 +516,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
+--- !u!114 &675982096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675982094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20f85c9bdabea8438e3aa0360ec3815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &868888043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,8 +1685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed97b241ddd5c54f90453921fc30548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 1000
-  maxCoins: 1000
+  maxHp: 500
+  maxCoins: 250
 --- !u!1 &1849963735
 GameObject:
   m_ObjectHideFlags: 0
@@ -2147,7 +2159,7 @@ PrefabInstance:
     - target: {fileID: 6178529212754291364, guid: aee4e1f8c737e2340a0ec5cf78fcf19c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6178529212754291364, guid: aee4e1f8c737e2340a0ec5cf78fcf19c,
         type: 3}

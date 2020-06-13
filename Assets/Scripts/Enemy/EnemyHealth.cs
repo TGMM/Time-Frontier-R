@@ -7,6 +7,22 @@ namespace Enemy
     {
         [SerializeField] private int health = 10;
         private bool _destinedToDie = false;
+        private ParticleSystem _particleSystem;
+        private EnemyHealth _health;
+
+        private void Start()
+        {
+            _particleSystem = GetComponent<ParticleSystem>();
+            _health = GetComponent<EnemyHealth>();
+        }
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.gameObject.CompareTag("Projectile"))
+            {
+                _health.TakeDamage(10);
+            }
+        }
 
         public void Update()
         {
@@ -31,6 +47,9 @@ namespace Enemy
             if (d <= 0) return;
 
             health -= d;
+            
+            _particleSystem.Simulate(0, true, true);
+            _particleSystem.Play();
         }
 
         private void Die()

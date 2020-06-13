@@ -10,7 +10,7 @@ namespace Tower
         private GameObject _cannon;
         public GameObject cannonBall;
 
-        private bool _enemyDetected = false;
+        private bool _enemyDetected;
         public float cooldown;
         private const float MaxCooldown = 2f;
 
