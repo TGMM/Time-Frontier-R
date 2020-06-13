@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6624635627564366900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6624635627564366902}
+  - component: {fileID: 6624635627564366901}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6624635627564366902
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6624635627564366900}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1031022, y: -0.6982067, z: 8.514795}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6624635627564366901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6624635627564366900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d747982c6937e46b8cc267df452cf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Theme
+    clip: {fileID: 8300000, guid: f98dad9d10e9af94996b88db5ac4aa92, type: 3}
+    volume: 0.51
+    pitch: 1
+    loop: 1
+    output: {fileID: 24300002, guid: 9359a9482d35466438e854dcd7131fde, type: 2}
+    source: {fileID: 0}
+  - name: menu
+    clip: {fileID: 8300000, guid: 01e2043503d668c49b24e43882b43e78, type: 3}
+    volume: 0.51
+    pitch: 1
+    loop: 1
+    output: {fileID: 24300002, guid: 9359a9482d35466438e854dcd7131fde, type: 2}
+    source: {fileID: 0}
+  - name: easter
+    clip: {fileID: 8300000, guid: 25dd3e4b9c300874380f44819d52dfbb, type: 3}
+    volume: 0.51
+    pitch: 1
+    loop: 1
+    output: {fileID: 24300002, guid: 9359a9482d35466438e854dcd7131fde, type: 2}
+    source: {fileID: 0}
