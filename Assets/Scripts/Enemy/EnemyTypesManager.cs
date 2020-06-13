@@ -8,8 +8,8 @@ namespace Enemy
     public class EnemyTypesManager : MonoBehaviour
     {
         public List<EnemyType> enemyTypes = new List<EnemyType>();
-        [SerializeField] private GameObject goblin = new GameObject();
-        [SerializeField] private GameObject orc = new GameObject();
+        [SerializeField] private GameObject goblin;
+        [SerializeField] private GameObject orc;
 
         private void Start()
         {

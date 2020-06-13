@@ -48,7 +48,16 @@ namespace Enemy
         {
             foreach (var enemy in enemiesToSpawn)
             {
-                Instantiate(enemy, spawnPosition, Quaternion.identity);
+                var newEnemy = Instantiate(enemy, spawnPosition, Quaternion.identity);
+                switch (enemy.name)
+                {
+                    case "Enemy_Goblin":
+                        newEnemy.GetComponent<EnemyHealth>().SetHealth(10);
+                        break;
+                    case "Enemy_Orc":
+                        newEnemy.GetComponent<EnemyHealth>().SetHealth(30);
+                        break;
+                }
                 yield return new WaitForSeconds(secondsToWait);
             }
         }

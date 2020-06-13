@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 namespace Player
 {
@@ -13,10 +14,25 @@ namespace Player
         private const int StartingCoins = 250;
         private const int StartingHp = 500;
 
+        private TextMeshProUGUI _hpText;
+        private TextMeshProUGUI _coinsText;
+
         private void Awake()
         {
             Coins = StartingCoins;
             Hp = StartingHp;
+        }
+
+        private void Start()
+        {
+            _hpText = GameObject.Find("HealthPoints").GetComponent<TextMeshProUGUI>();
+            _coinsText = GameObject.Find("Money").GetComponent<TextMeshProUGUI>();
+        }
+
+        private void Update()
+        {
+            _hpText.text = Hp.ToString();
+            _coinsText.text = Coins.ToString();
         }
 
         public int GetCoins()
@@ -29,27 +45,12 @@ namespace Player
             return Hp;
         }
 
-        public void AddCoins(int coinsToAdd)
+        public void ChangeCoins(int coinsToAdd)
         {
-            if (coinsToAdd <= 0) return;
             Coins += coinsToAdd;
         }
-
-        public void AddHp(int hpToAdd)
+        public void ChangeHp(int hpToAdd)
         {
-            if (hpToAdd <= 0) return;
-            Hp += hpToAdd;
-        }
-
-        public void RemoveCoins(int coinsToAdd)
-        {
-            if (coinsToAdd >= 0) return;
-            Coins += coinsToAdd;
-        }
-
-        public void RemoveHp(int hpToAdd)
-        {
-            if (hpToAdd >= 0) return;
             Hp += hpToAdd;
         }
     }

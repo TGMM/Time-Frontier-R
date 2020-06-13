@@ -1597,6 +1597,7 @@ GameObject:
   - component: {fileID: 1652650108}
   - component: {fileID: 1652650110}
   - component: {fileID: 1652650109}
+  - component: {fileID: 1652650111}
   m_Layer: 0
   m_Name: _gameMaster
   m_TagString: GameMaster
@@ -1660,6 +1661,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goblin: {fileID: 1501106425534465805, guid: d6f36bc809d85e44db67c2ead46d4225, type: 3}
   orc: {fileID: 4784645631715037705, guid: a7b90d157a00d154eb5c0329774f2dac, type: 3}
+--- !u!114 &1652650111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652650106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ed97b241ddd5c54f90453921fc30548, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 1000
+  maxCoins: 1000
 --- !u!1 &1849963735
 GameObject:
   m_ObjectHideFlags: 0
@@ -2067,12 +2082,12 @@ PrefabInstance:
     - target: {fileID: 3360528991080844178, guid: aee4e1f8c737e2340a0ec5cf78fcf19c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 3360528991080844178, guid: aee4e1f8c737e2340a0ec5cf78fcf19c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.25
       objectReference: {fileID: 0}
     - target: {fileID: 3360528991080844178, guid: aee4e1f8c737e2340a0ec5cf78fcf19c,
         type: 3}

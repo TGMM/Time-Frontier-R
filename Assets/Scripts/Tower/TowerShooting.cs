@@ -63,7 +63,7 @@ namespace Tower
         {
             if (!_enemyDetected) return;
             var firedBullet = Instantiate(cannonBall, _cannon.transform.position, _cannon.transform.rotation);
-            firedBullet.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0, 1000), ForceMode2D.Force);
+            firedBullet.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0, 500), ForceMode2D.Force);
             cooldown = MaxCooldown;
         }
         private void OnDrawGizmosSelected()

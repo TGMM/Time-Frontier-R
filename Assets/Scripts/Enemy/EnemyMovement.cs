@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Map;
+using Player;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -32,6 +33,7 @@ namespace Enemy
             var next = FindNextTile();
             if (next == Vector3Int.one)
             {
+                FindObjectOfType<PlayerValues>().ChangeHp(-10);
                 Destroy(gameObject);
                 yield break;
             }
