@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -38,6 +39,19 @@ namespace Map
             ClearMap();
             PlaceRandomTileOnEveryColumn();
             FillEmptyWithTile(_tileTypes.grass);
+
+            var bounds = _map.localBounds;
+            var max = new Vector3Int(Convert.ToInt32(bounds.max.x), Convert.ToInt32(bounds.max.y), 0);
+            var min = new Vector3Int(Convert.ToInt32(bounds.min.x), Convert.ToInt32(bounds.min.y), 0);
+
+            var oneWithoutZ = new Vector3Int(1,1,0);
+            _map.CompressBounds();
+            var contour = GetContour(min - oneWithoutZ, max + oneWithoutZ);
+
+            foreach (var tile in contour)
+            {
+                _map.SetTile(tile + _mapOffset - oneWithoutZ, _tileTypes.brick);
+            }
         }
 
         private void PlaceRandomTileOnEveryColumn()
@@ -78,10 +92,46 @@ namespace Map
                 var newPos = new Vector3Int(startingX + currentTile, posY, 0);
 
                 _map.SetTile(newPos, _tileTypes.basicRoad);
+
                 placedTiles.Add(newPos);
             }
 
             ConnectTiles(placedTiles);
+
+            var lastTilePos = placedTiles[placedTiles.Count - 1];
+            _map.SetTile(lastTilePos, _tileTypes.endStone);
+        }
+
+        private List<Vector3Int> GetContour(Vector3Int topLeft, Vector3Int bottomRight)
+        {
+            int height = Mathf.Abs(topLeft.y - bottomRight.y);
+            int width = Mathf.Abs(topLeft.x - bottomRight.x);
+            int max, min;
+
+            max = Mathf.Max(height, width);
+            min = Mathf.Min(height, width);
+
+            var vectorList = new List<Vector3Int>();
+
+            for (int i = 0; i < max; i++)
+            {
+                for (int j = 0; j < min; j++)
+                {
+
+                    if (i == 0 || i == max - 1)
+                    {
+                        var heightV = new Vector3Int(i, j,0);
+                        vectorList.Add(heightV);
+                    }
+                    else if (j == 0 || j == min - 1)
+                    {
+                        var heightV = new Vector3Int(i, j,0);
+                        vectorList.Add(heightV);
+                    }
+                }
+            }
+
+            return vectorList;
         }
 
         private void ConnectTiles(List<Vector3Int> placedTiles)

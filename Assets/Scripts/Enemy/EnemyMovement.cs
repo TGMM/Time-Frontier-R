@@ -11,7 +11,7 @@ namespace Enemy
     {
         private Tilemap _map;
         private TileTypesManager _tileTypes;
-        private string _prohibitedTileName;
+        private string _allowedTileName;
 
         private List<Vector3Int> _visitedTiles;
 
@@ -21,7 +21,7 @@ namespace Enemy
         private void Start()
         {
             _tileTypes = FindObjectOfType<TileTypesManager>();
-            _prohibitedTileName = _tileTypes.grass.name;
+            _allowedTileName = _tileTypes.basicRoad.name;
             _map = FindObjectOfType<Grid>().transform.GetChild(0).GetComponent<Tilemap>();
             _visitedTiles = new List<Vector3Int>();
 
@@ -60,7 +60,7 @@ namespace Enemy
 
             var cellUp = currentCell + Vector3Int.up;
             var tileUp = _map.GetTile(cellUp);
-            if (tileUp != null && !_visitedTiles.Contains(cellUp) && tileUp.name != _prohibitedTileName)
+            if (tileUp != null && !_visitedTiles.Contains(cellUp) && tileUp.name == _allowedTileName)
             {
                 _visitedTiles.Add(cellUp);
                 transform.rotation = Quaternion.Euler(Vector3.zero);
@@ -69,7 +69,7 @@ namespace Enemy
 
             var cellRight = currentCell + Vector3Int.right;
             var tileRight = _map.GetTile(cellRight);
-            if (tileRight != null && !_visitedTiles.Contains(cellRight) && tileRight.name != _prohibitedTileName)
+            if (tileRight != null && !_visitedTiles.Contains(cellRight) && tileRight.name == _allowedTileName)
             {
                 _visitedTiles.Add(cellRight);
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, -90));
@@ -78,7 +78,7 @@ namespace Enemy
 
             var cellDown = currentCell + Vector3Int.down;
             var tileDown = _map.GetTile(cellDown);
-            if (tileDown != null && !_visitedTiles.Contains(cellDown) && tileDown.name != _prohibitedTileName)
+            if (tileDown != null && !_visitedTiles.Contains(cellDown) && tileDown.name == _allowedTileName)
             {
                 _visitedTiles.Add(cellDown);
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, -180));
