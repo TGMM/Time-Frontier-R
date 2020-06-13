@@ -19,15 +19,14 @@ namespace Tower
 
         private void Closest()
         {
-            var detectedEnemies = new Collider2D[25];
-            Physics2D.OverlapCircleNonAlloc(transform.position, Range, detectedEnemies, LayerMask.NameToLayer("Enemy"));
+            var detectedEnemies = Physics2D.OverlapCircleAll(transform.position, Range);
 
             Transform tMin = null;
             float minDist = Mathf.Infinity;
 
             foreach (Collider2D enemy in detectedEnemies)
             {
-                if (enemy == null || !enemy.CompareTag("Enemy")) continue;
+                if (!enemy.CompareTag("Enemy")) continue;
 
                 float dist = Vector2.Distance(enemy.transform.position, _cannon.transform.position);
                 if (dist < minDist)
